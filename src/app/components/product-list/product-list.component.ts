@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { ReviewService } from 'src/app/services/review.service';
 
@@ -10,7 +11,8 @@ import { ReviewService } from 'src/app/services/review.service';
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];
-  constructor(private productService: ProductService, private http: HttpClient, private reviewService: ReviewService) {}
+  
+  constructor(private productService: ProductService, private http: HttpClient, private reviewService: ReviewService,private router: Router) {}
    
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe({
@@ -112,7 +114,9 @@ export class ProductListComponent implements OnInit {
     case 4: return '⭐⭐⭐⭐⭐ Excellent';
     default: return 'Unrated';
   }
+  
 }
+goToDetail(id: string) { this.router.navigate(['/product', id]); }
 
   
   

@@ -1,0 +1,35 @@
+<div class="container"></div>
+    <div class="product-details">
+        <h2>{{ product?.name }}</h2>
+        <img 
+            [src]="product?.imageUrl" 
+            alt="{{ product?.name }}" 
+            style="width: 300px; height: auto;" 
+        />
+        <p><strong>Price:</strong> ₹{{ product?.price }}</p>
+        <p><strong>Stock:</strong> {{ product?.stock }}</p>
+        <p><strong>Category:</strong> {{ product?.category }}</p>
+        <p><strong>Merchant:</strong> {{ product?.merchant?.merchantName }}</p>
+        <div class="average-rating" style="margin: 10px 0;">
+            ⭐ Average Rating: {{ averageRating }}/5
+        </div>
+
+        <!-- Placeholder for future buttons -->
+        <div class="actions">
+            <button type="button" disabled>Add to Cart</button>
+            <button type="button" disabled>Buy Now</button>
+        </div>
+    </div>
+
+    <div class="reviews-section" *ngIf="reviews.length > 0">
+        <h3>Customer Reviews</h3>
+        <div *ngFor="let review of reviews" class="review-card">
+            <div>⭐ {{ review.reviewType }}/5</div>
+            <p>{{ review.reviewText }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="reviews.length === 0">
+        <p>No reviews available for this product.</p>
+    </div>
+ 

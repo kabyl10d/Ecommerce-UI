@@ -1,60 +1,48 @@
-<div class="product-grid"> <div class="product-card" *ngFor="let product of products"> <img [src]="product.imageUrl" class="product-image" alt="{{ product.name }}" />
-  
+<div class="product-grid"> 
+  <mat-card class="product-card" *ngFor="let product of products" (click)="goToDetail(product.productId)"> <img [src]="product.imageUrl" class="product-image" alt="{{ product.name }}" />
   <div class="product-details">
     <h3>{{ product.name }}</h3>
     <p>₹{{ product.price }}</p>
     <p>Stock: {{ product.stock }}</p>
     <p>Category: {{ getCategoryName(product.category) }}</p>
-    
-    <div *ngIf="product.reviews && product.reviews.length > 0" class="text-yellow-600 font-semibold">
-      ⭐ {{ getAverageRating(product.reviews) }} / 5
-    </div>
-     
-    <button (click)="product.showDetails = !product.showDetails" class="text-blue-500 text-sm mt-2 underline">
+  
+    <div class="rating"> ⭐ {{ product.averageRating }}/5 </div>
+  
+    <button type="button" (click)="product.showDetails = !product.showDetails; $event.stopPropagation()" class="text-blue-500 text-sm mt-2 underline">
       {{ product.showDetails ? 'Hide Reviews' : 'Show Reviews' }}
     </button>
-     
-     
-<div *ngIf="product.showDetails" class="mt-2 bg-gray-100 p-3 rounded transition-all duration-300">
-  <p class="font-semibold mb-2">Reviews:</p>
-  <div *ngFor="let review of product.reviews" class="mb-2 p-2 border rounded bg-white shadow">
-    <p><strong>Rating:</strong> {{ getReviewLabel(review.reviewType) }}</p>
-    <p><strong>Comment:</strong> {{ review.reviewText }}</p>
-  </div>
-</div>
- 
-    
-    <div class="product-actions">
-      <button (click)="editProduct(product)">Edit</button>
-      <button class="delete" (click)="deleteProduct(product.productId)">Delete</button>
+  
+    <div *ngIf="product.showDetails" class="mt-2 bg-gray-100 p-3 rounded transition-all duration-300">
+      <p class="font-semibold mb-2">Reviews:</p>
+      <div *ngFor="let review of product.reviews" class="mb-2 p-2 border rounded bg-white shadow">
+        <p><strong>Rating:</strong> {{ getReviewLabel(review.reviewType) }}</p>
+        <p><strong>Comment:</strong> {{ review.reviewText }}</p>
+      </div>
+    </div>
+  
+    <div class="product-actions mt-3">
+      <button type="button" (click)="editProduct(product); $event.stopPropagation()">Edit</button>
+      <button type="button" class="delete" (click)="deleteProduct(product.productId); $event.stopPropagation()">Delete</button>
     </div>
   </div>
-  </div>  
-   
-<div class="edit-modal" *ngIf="editingProduct">
-  <div class="edit-modal-content">
-    <h3>Edit Product</h3>
-
-    <form (ngSubmit)="updateProduct()" #editForm="ngForm">
-      <input type="text" [(ngModel)]="editingProduct.name" name="name" required />
-      <input type="number" [(ngModel)]="editingProduct.price" name="price" required />
-      <input type="number" [(ngModel)]="editingProduct.stock" name="stock" required />
-
-      <select [(ngModel)]="editingProduct.category" name="category" required>
-        <option [value]="1">Electronics</option>
-        <option [value]="2">Mobiles</option>
-        <option [value]="3">Home & Kitchen</option>
-        <option [value]="4">Fashion</option>
-        <option [value]="5">Beauty</option>
-        <option [value]="6">Health</option>
-        <option [value]="7">Baby Products</option>
-        <option [value]="8">Stationery</option>
-      </select>
-
-      <button type="submit">Update</button>
-      <button type="button" (click)="editingProduct = null">Cancel</button>
-    </form>
-  </div>
-</div>
-
-</div>
+</mat-card> </div> <div class="edit-modal" *ngIf="editingProduct"> <div class="edit-modal-content"> <h3>Edit Product</h3>
+  <form (ngSubmit)="updateProduct()" #editForm="ngForm">
+    <input type="text" [(ngModel)]="editingProduct.name" name="name" required />
+    <input type="number" [(ngModel)]="editingProduct.price" name="price" required />
+    <input type="number" [(ngModel)]="editingProduct.stock" name="stock" required />
+  
+    <select [(ngModel)]="editingProduct.category" name="category" required>
+      <option [value]="1">Electronics</option>
+      <option [value]="2">Mobiles</option>
+      <option [value]="3">Home & Kitchen</option>
+      <option [value]="4">Fashion</option>
+      <option [value]="5">Beauty</option>
+      <option [value]="6">Health</option>
+      <option [value]="7">Baby Products</option>
+      <option [value]="8">Stationery</option>
+    </select>
+  
+    <button type="submit">Update</button>
+    <button type="button" (click)="editingProduct = null">Cancel</button>
+  </form>
+</div> </div>

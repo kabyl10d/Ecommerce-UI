@@ -12,7 +12,11 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MerchantProductsComponent } from './components/merchant-products/merchant-products.component';
 import { ProductReviewsComponent } from './components/product-reviews/product-reviews.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +25,16 @@ import { ProductReviewsComponent } from './components/product-reviews/product-re
     AddProductComponent,
     NavbarComponent,
     MerchantProductsComponent,
-    ProductReviewsComponent
+    ProductReviewsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
