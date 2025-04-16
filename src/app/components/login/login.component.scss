@@ -1,0 +1,53 @@
+.login-container,
+.add-product-form {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    input, select {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #218838;
+      }
+    }
+  }
+
+  .error {
+    color: #d32f2f;
+    font-weight: bold;
+    text-align: center;
+  }
+}

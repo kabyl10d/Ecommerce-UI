@@ -1,0 +1,92 @@
+<div class="add-product-container">
+  <h2>Add New Product</h2>
+
+  <form (ngSubmit)="addProduct()" class="product-form">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name">Product Name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="name"
+        required
+        placeholder="Enter product name"
+      />
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="price">Price (₹)</label>
+      <input
+        id="price"
+        name="price"
+        type="number"
+        [(ngModel)]="price"
+        required
+        min="1"
+        placeholder="Enter price"
+      />
+    </div>
+
+    <!-- Stock -->
+    <div class="form-group">
+      <label for="stock">Stock Quantity</label>
+      <input
+        id="stock"
+        name="stock"
+        type="number"
+        [(ngModel)]="stock"
+        required
+        min="0"
+        placeholder="Enter stock"
+      />
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select
+        id="category"
+        name="category"
+        [(ngModel)]="category"
+        required
+      >
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let cat of categories" [value]="cat.id">
+          {{ cat.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Image URL 
+    <div class="form-group">
+      <label for="imageUrl">Image URL</label>
+      <input
+        id="imageUrl"
+        name="imageUrl"
+        type="text"
+        [(ngModel)]="imageUrl"
+        (input)="onImageUrlChange()"
+        placeholder="https://example.com/product.jpg"
+      />
+    </div>-->
+
+    <!-- OR Upload -->
+    <div class="form-group">
+      <label for="productImage">Upload Product Image</label>
+      <input type="file" id="productImage" (change)="onFileSelected($event)" accept="image/*" />
+    </div>
+    
+    <button type="button" (click)="uploadAndSetImage()" [disabled]="!selectedFile">Upload Image</button>
+    
+    <div class="form-group" *ngIf="previewUrl">
+      <label>Preview:</label><br />
+      <img [src]="previewUrl" alt="Preview" style="max-width: 100%; border-radius: 6px;" />
+    </div>
+    
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn">Add Product</button>
+  </form>
+</div>

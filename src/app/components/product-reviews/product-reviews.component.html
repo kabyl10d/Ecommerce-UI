@@ -1,0 +1,13 @@
+<div class="reviews-section" *ngIf="reviews.length; else noReviews">
+    <div class="review-card" *ngFor="let review of reviews">
+        <div class="rating">⭐ {{ review.rating }}/5</div>
+        <p class="comment">{{ review.comment }}</p>
+        <p class="date" *ngIf="review.createdAt">
+            {{ review.createdAt | date:'mediumDate' }}
+        </p>
+    </div>
+</div>
+
+<ng-template #noReviews>
+    <p>No reviews found for this product.</p>
+</ng-template>

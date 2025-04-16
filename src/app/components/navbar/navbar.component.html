@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <a routerLink="/">🏠 Home</a>
+  
+    <a routerLink="/add-product" *ngIf="isMerchant()">➕ Add Product</a>
+  
+    <span class="spacer"></span>
+  
+    <span *ngIf="isLoggedIn()">
+      👋 Welcome, {{ getUsername() }} ({{ getRole() }})
+      <button (click)="logout()">Logout</button>
+    </span>
+  
+    <a routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
+  </nav>
+  

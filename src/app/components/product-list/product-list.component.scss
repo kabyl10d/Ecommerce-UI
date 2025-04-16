@@ -1,0 +1,130 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;  
+  gap: 1rem;
+  justify-content: flex-start;  
+  padding: 1rem;
+}
+
+.product-card {
+  width: 220px;  
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+}
+
+.product-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  padding: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.product-details {
+  padding: 0.75rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  p {
+    margin: 0.25rem 0;
+    font-size: 0.85rem;
+    color: #666;
+  }
+}
+
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+
+  button {
+    flex: 1;
+    padding: 0.3rem;
+    font-size: 0.75rem;
+    margin: 0 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #2980b9;
+    }
+
+    &.delete {
+      background-color: #e74c3c;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+}
+.edit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .edit-modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 300px;
+
+    h3 {
+      margin-top: 0;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    button[type='submit'] {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #27ae60;
+      }
+    }
+
+    button[type='button'] {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+}
